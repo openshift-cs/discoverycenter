@@ -38,6 +38,6 @@ Environment variables can be set when initially creating a web application from 
 $ oc new-app python~https://gitlab.com/osevg/python-django-modwsgi.git --env DISABLE_MIGRATE=1
 --
 
-In the case of a an web application which is already running, environment variables can be set from the build or deployment configuration through the OpenShift web console. Alternatively, `oc set env` can be used from the command line.
+In the case of a web application which is already running, environment variables can be set from the build or deployment configuration through the OpenShift web console, or `oc set env` can be used from the command line.
 
 '''
