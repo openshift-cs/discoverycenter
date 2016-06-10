@@ -25,6 +25,7 @@ developer:
     php.html.adoc: "/developer/languages/php.html.adoc"
     python:
       index.html.adoc: "/developer/languages/python/index.html.adoc"
+      environment-variables.html.adoc: "/developer/languages/python/environment-variables.html.adoc"
     ruby.html.adoc: "/developer/languages/ruby.html.adoc"
     static.html.adoc: "/developer/languages/static.html.adoc"
   databases:
