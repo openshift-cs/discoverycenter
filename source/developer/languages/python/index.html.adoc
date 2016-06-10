@@ -15,7 +15,7 @@ Python is a general-purpose, high-level programming language whose design philos
 
 == Source-to-Image Builders
 
-The `python` Source-to-Image (S2I) builders provide an easy and convenient way for deploying http://www.python.org/[Python] web applications on OpenShift. Currently OpenShift Online supports Python 2.7, 3.4 and 3.4. Deploying your Python application with a specific Python version is as easy as selecting the Python version from the OpenShift web console when deploying your application the first time:
+The `python` Source-to-Image (S2I) builders provide an easy and convenient way for deploying http://www.python.org/[Python] web applications on OpenShift. Currently OpenShift Online supports Python 2.7, 3.3 and 3.4. Deploying your Python application with a specific Python version is as easy as selecting the Python version from the OpenShift web console when deploying your application the first time:
 
 image::../../../img/python/select-image-or-template.png[Select Image or Template]
 
