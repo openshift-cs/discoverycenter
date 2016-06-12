@@ -2,7 +2,7 @@
 title: Overview
 ---
 
-:imagesdir: ../../../
+:imagesdir: ../../../img
 
 == Python Application Hosting
 toc::[]
@@ -10,7 +10,7 @@ toc::[]
 With OpenShift you can easily deploy and run Python applications using your favorite frameworks and databases. All of the major Python WSGI based web frameworks, Django, Flask and Pyramid can be used. Bundled support for Gunicorn is included when running WSGI based applications, or you can choose to use other WSGI servers such as mod_wsgi-express and uWSGI. Prefer to run asynchronous event based applications, you can use frameworks such as Tornado, Twisted, or newer asyncio based systems.
 
 ****
-image::img/logos/python-logo.png[Python logo]
+image::logos/python-logo.png[Python logo]
 
 Python is a general-purpose, high-level programming language whose design philosophy emphasizes code readability. The Web Server Gateway Interface (WSGI) defines a simple and universal interface between web servers and web applications or frameworks for the Python programming language. link:https://www.python.org/[-> Learn more]
 ****
@@ -19,7 +19,7 @@ Python is a general-purpose, high-level programming language whose design philos
 
 The `python` Source-to-Image (S2I) builders provide an easy and convenient way for deploying http://www.python.org/[Python] web applications on OpenShift. Currently OpenShift Online supports Python 2.7, 3.3 and 3.4. Deploying your Python application with a specific Python version is as easy as selecting the Python version from the OpenShift web console when deploying your application the first time:
 
-image::img/developer/languages/python/select-image-or-template.png[Select Image or Template]
+image::developer/languages/python/select-image-or-template.png[Select Image or Template]
 
 or declaring the version when using the `oc` command line tool:
 
