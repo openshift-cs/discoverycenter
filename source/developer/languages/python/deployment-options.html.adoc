@@ -43,7 +43,9 @@ When connections are received from another application running in the same OpenS
 * `X-Forwarded-Port` - The exposed port on which the inbound HTTP connection was accepted.
 * `X-Forwarded-Proto` - The protocol scheme identifying the type of connection made: `http` or `https`.
 
-The `python` source-to-image builders do not directly support termination of TLS connections for HTTPS. If your application requires that a remote client use a secure connection, you should enable use of a secure connection when exposing the servive, specifying `edge` termination, and optionally supplying your SSL certificate details.
+The `Host` header will be passed through with the original hostname that the client created the connection against. 
+
+The `python` source-to-image builders do not directly support termination of TLS connections for HTTPS. If your application requires that a remote client use a secure connection, you should enable use of a secure connection when exposing the service, specifying `edge` termination, and optionally supplying your SSL certificate details.
 
 === Hosting of Static Files
 
