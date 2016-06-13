@@ -25,7 +25,7 @@ developer:
     php.html.adoc: "/developer/languages/php.html.adoc"
     python:
       index.html.adoc: "/developer/languages/python/index.html.adoc"
-      dependency-management.html.adoc: "/developer/languages/python/dependency-management.html.adoc"
+      dependency-management.html.adoc: "/developer/languages/python/package-installation.html.adoc"
       deployment-options.html.adoc: "/developer/languages/python/deployment-options.html.adoc"
       environment-variables.html.adoc: "/developer/languages/python/environment-variables.html.adoc"
     ruby.html.adoc: "/developer/languages/ruby.html.adoc"

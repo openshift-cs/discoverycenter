@@ -1,8 +1,8 @@
 ---
-title: Dependency Management
+title: Package Installation
 ---
 
-== Python Dependency Management
+== Python Package Installation
 toc::[]
 
 OpenShift will automatically install for you any Python packages required by your application. You have two choices for how to declare the packages your application requires.
