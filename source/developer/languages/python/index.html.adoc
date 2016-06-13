@@ -16,7 +16,7 @@ With OpenShift you can easily deploy and run Python applications using your favo
 
 === Source-to-Image Builders
 
-The `python` Source-to-Image (S2I) builders provide an easy and convenient way for deploying http://www.python.org/[Python] web applications on OpenShift. OpenShift Online supports Python 2.7, 3.3 and 3.4. Deploying your Python application with a specific Python version is as easy as selecting the Python version from the OpenShift web console when deploying your application the first time:
+The `python` source-to-image (S2I) builders provide an easy and convenient way for deploying http://www.python.org/[Python] web applications on OpenShift. OpenShift Online supports Python 2.7, 3.3 and 3.4. Deploying your Python application with a specific Python version is as easy as selecting the Python version from the OpenShift web console when deploying your application the first time:
 
 image::developer/languages/python/select-image-or-template.png[Select Image or Template]
 

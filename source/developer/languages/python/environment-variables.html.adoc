@@ -5,7 +5,7 @@ title: Environment Variables
 == Python Environment Variables
 toc::[]
 
-The `python` Source-to-Image (S2I) builders support the following environment variables:
+The `python` source-to-image (S2I) builders support the following environment variables:
 
 [cols="1,2,3",options="header"]
 |===
