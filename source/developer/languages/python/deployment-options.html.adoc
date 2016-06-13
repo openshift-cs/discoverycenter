@@ -68,6 +68,39 @@ The configuration file can also be used to set the type of worker, allowing you 
 
 === Running With Apache/mod_wsgi
 
+To run your WSGI application with Apache/mod_wsgi, you can use mod_wsgi-express. This can be installed by listing `mod_wsgi` in the `requirements.txt` or `setup.py` files.
+
+Unlike when using Apache/mod_wsgi directly, where you would need to configure Apache yourself, mod_wsgi-express will handle all configuration of Apache and mod_wsgi for you, making it very easy to deploy your WSGI application. When mod_wsgi-express configures Apache, it uses a configuration which has been set up specifically for hosting Python web applications, providing you a better baseline performance than a generic Apache configuration.
+
+Normally `mod_wsgi-express` would be executed from the command line, it can however also be launched from Python code included in `app.py` using the Python `mod_wsgi` package. For example:
+
+[source,python]
+--
+import mod_wsgi.server
+
+mod_wsgi.server.start(
+  '--log-to-terminal',
+  '--port', '8080',
+  '--trust-proxy-header', 'X-Forwarded-For',
+  '--trust-proxy-header', 'X-Forwarded-Port',
+  '--trust-proxy-header', 'X-Forwarded-Proto',
+  '--url-alias', '/static/', './static/',
+  '--application-type', 'module',
+  '--entry-point', 'demo.wsgi',
+)
+--
+
+The key options provided to mod_wsgi-express via the `mod_wsgi.server.start()` call are as follows:
+
+* The `--log-to-terminal` option ensures that all logging from Apache is sent to the console and is available to OpenShift.
+* The `--port` option ensures that Apache is listening on port 8080.
+* The `--trust-proxy-header` options ensure that mod_wsgi fixes up the WSGI request details based on details passed via the HTTP proxy.
+* The `--url-alias` option indicates to Apache that it should host static files at the specified location.
+* The `--application-type` option indicates to mod_wsgi that the WSGI application can be found by importing a specified module.
+* The `--entry-point` option indicates to mod_wsgi the module containing the WSGI application, in this case `demo.wsgi`. This could be an installed module, or a part of a local package in the source code repository where the `wsgi.py` file is located at the path `demo/wsgi.py`. If the `wsgi.py` file was located in the top level directory of the source code repository, the argument to the `--entry-point` option would instead have been `wsgi`.
+
+For a complete list of the options that mod_wsgi-express provides, you can install the `mod_wsgi` module locally and run `mod_wsgi-express start-server --help`. Note that all options when passed to `mod_wsgi.server.start()` need to be passed as strings.
+
 === Running With uWSGI
 
 === Running With Waitress
