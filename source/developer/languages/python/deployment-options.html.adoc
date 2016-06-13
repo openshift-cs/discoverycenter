@@ -94,12 +94,12 @@ The key options provided to mod_wsgi-express via the `mod_wsgi.server.start()` c
 
 * The `--log-to-terminal` option ensures that all logging from Apache is sent to the console and is available to OpenShift.
 * The `--port` option ensures that Apache is listening on port 8080.
-* The `--trust-proxy-header` options ensure that mod_wsgi fixes up the WSGI request details based on details passed via the HTTP proxy.
-* The `--url-alias` option indicates to Apache that it should host static files at the specified location.
+* The `--trust-proxy-header` options ensure that mod_wsgi fixes up the WSGI request details based on details passed via the HTTP proxy. This means you do not have to integrate a WSGI middleware into your application, or enable a framework specific mechanism, to make the changes.
+* The `--url-alias` option indicates to Apache that it should host static files at the location specified by the first argument, from the directory given as second argument. 
 * The `--application-type` option indicates to mod_wsgi that the WSGI application can be found by importing a specified module.
 * The `--entry-point` option indicates to mod_wsgi the module containing the WSGI application, in this case `demo.wsgi`. This could be an installed module, or a part of a local package in the source code repository where the `wsgi.py` file is located at the path `demo/wsgi.py`. If the `wsgi.py` file was located in the top level directory of the source code repository, the argument to the `--entry-point` option would instead have been `wsgi`.
 
-For a complete list of the options that mod_wsgi-express provides, you can install the `mod_wsgi` module locally and run `mod_wsgi-express start-server --help`. Note that all options when passed to `mod_wsgi.server.start()` need to be passed as strings.
+For a complete list of the options that mod_wsgi-express provides, you can install the `mod_wsgi` module locally, or `oc rsh` into the running application pod, and run `mod_wsgi-express start-server --help`. Note that all options when passed to `mod_wsgi.server.start()` need to be passed as strings.
 
 === Running With uWSGI
 
