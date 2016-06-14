@@ -1,0 +1,26 @@
+---
+title: Getting Started
+---
+
+:sectanchors:
+:linkattrs:
+:toc: macro
+:toclevels: 4
+
+== Python Getting Started
+
+With OpenShift you can easily deploy and run Python applications. In this getting started guide you will learn how to deploy a sample Python application, make your own modifications to it, and deploy your changes.
+
+toc::[]
+
+=== Step 1: Creating a Project
+
+=== Step 2: Forking Sample Application
+
+=== Step 3: Deploying the Application
+
+=== Step 4: Making Code Changes
+
+=== Step 5: Adding Extra Packages
+
+=== Step 6: Changing the WSGI Server
