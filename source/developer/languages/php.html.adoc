@@ -2,16 +2,250 @@
 title: PHP
 ---
 
-== A Sample Tutorial Style Guide
+== PHP application hosting
+
 toc::[]
 
-This is the introduction. It should give a quick overview of what's going to
-happen. You should always have an introduction - it is required.
+[NOTE]
+====
+PHP is a popular general-purpose scripting language that is especially suited
+to web development. Learn more at the http://www.php.net/[PHP home page].
+====
 
-This second paragraph is where you can put a little more detail. You might want
-to have an external link to the technology or some more background information
-to let the reader know about what they are about to do. It is also required. Do
-not add another paragraph. Make sure all sections have anchors. The intro
-requires the correct role. Put a horizontal line after the introduction section.
+=== Sample PHP application
+The https://github.com/marekjelen/openshift-sample-php[sample application] used
+in this tutorial in a single PHP script, that prints information about the
+environment using the phpinfo(); function.
 
-'''
+[source,php]
+.index.php
+----
+<?php
+  phpinfo();
+?>
+----
+
+Even though it's a minimal application it will serve well to describe the basic
+concepts.
+
+=== Supported PHP versions
+At the moment OpenShift Online provides two versions of PHP `5.5` and `5.6`.
+
+=== Step1: Create a PHP Application
+This tutorial walks through the creation of an application titled `sample` under
+the group `sample`. Before going through the rest of the tutorial, be sure to
+have created an https://console.preview.openshift.com[OpenShift account] and
+installed the **oc command line tools**.
+
+To create new application you need to have your source code hosted somewhere
+on the internet and have it accessible using git. Popular choices are
+https://github.com/[Github], https://gitlab.com/[Gitlab] or
+https://bitbucket.org/[BitBucket]. For example, our sample application is
+hosted at Github. For this tutorial you may use the code from the provided
+repository or you can https://help.github.com/articles/fork-a-repo/[fork] the
+repository. Forking is necessary if you want to follow through Step 2.
+
+[NOTE]
+====
+Forking the source code is good in case you want to change the code that is
+provided as the sample application. In case your goal is only to try deploying
+PHP application, it's possible to simply use the repository as mentioned. When
+you get into the phase of deploying custom application, it will live in your
+own repository.
+====
+
+[source]
+----
+oc new-app --name=sample php~https://github.com/marekjelen/openshift-sample-php.git
+----
+
+and the output should look something like this
+
+[source]
+----
+--> Found image bbfc4eb (5 weeks old) in image stream "php" in project "openshift" under tag "5.6" for "php"
+
+    Apache 2.4 with PHP 5.6
+    -----------------------
+    Platform for building and running PHP 5.6 applications
+
+    Tags: builder, php, php56, rh-php56
+
+    * A source build using source code from https://github.com/marekjelen/openshift-sample-php.git will be created
+      * The resulting image will be pushed to image stream "sample:latest"
+    * This image will be deployed in deployment config "sample"
+    * Port 8080/tcp will be load balanced by service "sample"
+      * Other containers can access this service through the hostname "sample"
+
+--> Creating resources with label app=sample ...
+    imagestream "sample" created
+    buildconfig "sample" created
+    deploymentconfig "sample" created
+    service "sample" created
+--> Success
+    Build scheduled, use 'oc logs -f bc/sample' to track its progress.
+    Run 'oc status' to view your app.
+----
+
+The `--name=sample` names the application. By default it would be the base name
+of the URL without extension, in our case `openshift-sample-php`, but it's much
+nicer to have the application named `sample` and that's what we did using this
+switch.
+
+The `template~source` construct instructs OpenShift to create an application
+using the `template` for some technology and use `source` as source code for
+the application. In our example we had `template` for `php` and `source` for
+the Github repository of our sample application.
+
+OpenShift automatically linked php with `PHP 5.6` as the latest version. You
+could as well use `php55` as the template to deploy using the specific version,
+e.g.
+
+[source]
+----
+oc new-app php55~https://github.com/marekjelen/openshift-sample-php.git
+----
+
+[NOTE]
+====
+For deploying the application the application from source code, OpenShift will
+first start build container that understands how to build PHP application. This
+container will receive the source code of the application from the git
+repository and will do a build. In the case of PHP it means it will try to fetch
+dependencies using `Composer` in case there is `package.json` file in the
+repository. The container also knows how to set up Apache and PHP for running
+your application. This container is then committed and pushed into internal
+Docker repository, where from the container is then fetched and deployed as your
+application.
+====
+
+OpenShift as well prints a lot of information that is not that important for
+us at this moment, what we care about is if our application is accessible from
+the internet and if we can see it running. For exposing application to the
+outside world, OpenShift has a concept of `routes` that map domain names to
+specific applications. At this moment we have no routes available, you can check
+that by running this command
+
+[source]
+----
+oc get routes
+----
+
+To expose our application we need to know the name of the internal service in
+all the information printed when we created our application it's this line
+`service "sample" created`. OpenShift automatically created new service,
+according to the name of the application. Now, let's expose that service, to do
+that, run this command
+
+[source]
+----
+oc expose svc sample
+----
+
+and you should see something like this
+
+[source]
+----
+route "sample" exposed
+----
+
+Now we can run again the command to list routes, and this time we should see
+one route named `sample`.
+
+[source]
+----
+oc get routes
+----
+
+and you should see something like this
+
+[source]
+----
+NAME      HOST/PORT                                    PATH      SERVICE           TERMINATION   LABELS
+sample    sample-demo.44fs.preview.openshiftapps.com             sample:8080-tcp                 app=sample
+----
+
+There is a again a lot of information that we do not care about at this moment
+but what we care about is the `HOST/PORT` column. It shows you the domain, your
+application is available at. To access the application, simply open the domain
+in your browser of choice and you should see the output of `phpinfo();`.
+
+=== Step 2: Make the First Change
+
+To make changes to the application, you need to
+https://help.github.com/articles/fork-a-repo/[fork] it and deploy from your own
+fork instead of from the original repository of the sample application. That
+means, that for creating the application the URL will have a different
+username/organization.
+
+[source]
+----
+oc new-app --name=sample php~https://github.com/[your user name]/openshift-sample-php.git
+----
+
+Except for that, the whole process process in the Step 1 is the same.
+
+==== Step 2.1: Editing the source code
+You can edit the source code in Github's web based editor. If you choose to do
+so, there no need to copy the source code to your local machine and can skip
+directly to Step 2.2.
+
+Or you can clone the repository locally, edit the file, and push back to the
+server. To do so, first clone the git repository and enter the new directory
+
+[source]
+----
+git clone https://github.com/[your user name]/openshift-sample-php.git
+cd openshift-sample-php
+----
+
+Edit the `index.php` file to your liking and commit the changes
+
+[source]
+----
+git add -A .
+git commit -m "My application changes"
+----
+
+and finally push back to the git hosting
+
+[source]
+----
+git push origin master
+----
+
+and that's it, the change is in the git repository, now let's go and deploy it.
+
+==== Step 2.2: Deploying the changes
+OpenShift already knows how to reach your git repository as it did while first
+deploying the application. As it created the service that we referenced before
+it also created buildconfig `buildconfig "sample" created`.
+
+[NOTE]
+====
+BuildConfigs contain information necessary for building an application. It also
+contain information what strategy should be used for building it. In our case
+the strategy is `Source`. For strategy from source it contains the URL of git
+repository to fetch the source code from and other important stuff. you can
+check more details by running `oc describe bc sample`.
+====
+
+BuildConfig is the reference for building stuff and allows us to trigger
+the building process, to do this run
+
+[source]
+----
+oc start-build sample
+----
+
+and you should see something like this
+
+[source]
+----
+sample-2
+----
+
+once the build finishes, refresh your browser with the application and you
+shall see the changed you just made.
+
+=== Step 3: Managing Dependencies
