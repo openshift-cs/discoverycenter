@@ -2,8 +2,14 @@
 title: Deployment Options
 ---
 
+:sectanchors:
+:linkattrs:
+:toc: macro
+:toclevels: 4
+
 == Python Deployment Options
 toc::[]
+
 
 The `python` source-to-image (S2I) builders provide a number of different ways of deploying a Python application. You can use the bundled support for hosting a WSGI application via Gunicorn, or you can choose to use other WSGI servers such as mod_wsgi-express and uWSGI. Prefer to run asynchronous event based applications, you can use frameworks such as Tornado, Twisted, or newer asyncio based systems.
 
