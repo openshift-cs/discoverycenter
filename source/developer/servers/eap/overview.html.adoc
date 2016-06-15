@@ -21,12 +21,13 @@ Learn more at the link:http://www.jboss.org/products/eap/overview/[JBoss Enterpr
 
 image::logos/eap-logo.png[]
 
-=== The PHP builder
 
-The php builder provides support for deploying PHP applications
-on OpenShift, using the Apache web server.
-OpenShift-maintained QuickStarts using the php builder include CakePHP,
-WordPress, and Drupal. Popular community-created PHP QuickStarts include
-Laravel, CodeIgniter, Symfony 2.3.6, and Piwik.
 
-link:getting-started.html[→ Get Started With PHP on OpenShift]
+=== The JBoss EAP builder
+
+The JBoss EAP builder provides support for deploying JEE applications
+on OpenShift, using Apache Maven as build tool.
+OpenShift provides a template to deploy JBoss EAP application alongside with a MySQL
+database providing persistent storage for it's data.
+
+link:getting-started.html[→ Get Started With JBoss EAP on OpenShift]

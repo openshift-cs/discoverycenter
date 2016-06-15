@@ -38,8 +38,6 @@ developer:
     eap:
       overview.html.adoc: "/developer/servers/eap/overview.html.adoc"
       getting-started.html.adoc: "/developer/servers/eap/getting-started.html.adoc"
-      dependencies.html.adoc: "/developer/servers/eap/dependencies.adoc"
-      environment-variables.html.adoc: "/developer/servers/eap/environment-variables.html.adoc"
   managing-applications:
     index.html.adoc: "/developer/managing-applications/index.html.adoc"
   faq.html.adoc:   "/developer/faq.html.adoc"

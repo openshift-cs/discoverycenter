@@ -17,7 +17,7 @@ installed the **oc command line tools**.
 
 === Step 1: The sample application and git repository
 
-==== Sample PHP application
+==== Sample Java Web application
 
 The https://github.com/openshiftdemos/os-sample-java-web[sample application] used
 in this tutorial is a simple Java Web application with a single Jsp file that prints out a `Hello World` message.
@@ -41,7 +41,7 @@ repository. Forking is necessary if you want to follow also through `Step 2`.
 ==== Creating new application using terminal
 
 Once ready, open a terminal and at the command prompt, enter the following
-command to create a PHP application (replace the username URL if you have
+command to create a Java web application (replace the username URL if you have
 forked, or the whole URL if you are using your own application):
 
 [source]
@@ -144,7 +144,7 @@ templates similar to
 
 image::developer/servers/eap/eap_image_selection.png[]
 
-select `php:latest` and fill in the form like this
+select `jboss-eap64-openshift:1.3` and fill in the form like this
 
 image::developer/servers/eap/eap_create_app.png[]
 
@@ -172,7 +172,7 @@ username/organization.
 
 [source]
 ----
-oc new-app --name=myapp php~https://github.com/[your user name]/os-sample-java-web.git
+oc new-app --name=myapp jboss-eap64-openshift~https://github.com/[your user name]/os-sample-java-web.git
 ----
 
 Except for that, the whole process process in the Step 1 is the same.
