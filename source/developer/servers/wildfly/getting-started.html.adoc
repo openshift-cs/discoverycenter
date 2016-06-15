@@ -82,7 +82,7 @@ of the URL without extension, in our case `os-sample-java-web`, but it's much
 nicer to have the application named `myapp` and that's what we did using this
 switch.
 
-OpenShift automatically linked wildfly with version 1.3 of the `Wildfly 10` image, that corresponds to the current latest version. You
+OpenShift automatically linked wildfly with version 10.0 of the `Wildfly` image, that corresponds to the current latest version. You
 could as well use `wildfly:10` as prefix to deploy using the specific version,
 e.g.
 
