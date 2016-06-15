@@ -30,7 +30,7 @@ it might be helpful.
 
 To create new application you need to have your source code hosted somewhere
 on the internet and have it accessible using git. Popular choices are
-https://github.com/[Github], https://gitlab.com/[Gitlab] or
+https://github.com/[GitHub], https://gitlab.com/[GitLab] or
 https://bitbucket.org/[BitBucket]. For example, our sample application is
 hosted at Github. For this tutorial you may use the code from the provided
 repository or you can https://help.github.com/articles/fork-a-repo/[fork] the
@@ -88,7 +88,7 @@ e.g.
 
 [source]
 ----
-oc new-app php55~https://github.com/OpenShiftDemos/openshift-sample-php.git
+oc new-app --name=myapp php55~https://github.com/OpenShiftDemos/openshift-sample-php.git
 ----
 
 OpenShift prints a lot of information that is not that important for
@@ -172,7 +172,7 @@ username/organization.
 
 [source]
 ----
-oc new-app --name=sample php~https://github.com/[your user name]/openshift-sample-php.git
+oc new-app --name=myapp php~https://github.com/[your user name]/openshift-sample-php.git
 ----
 
 Except for that, the whole process process in the Step 1 is the same.
