@@ -1,17 +1,101 @@
 ---
-title: Node.js
+title: NodeJS
 ---
 
-== A Sample Tutorial Style Guide
+== NodeJS
 toc::[]
+Welcome: JavaScript in a container!
+
+nodejs logo and link
+
+development dependencies: git, nodejs, oc
 
 This is the introduction. It should give a quick overview of what's going to
 happen. You should always have an introduction - it is required.
 
 This second paragraph is where you can put a little more detail. You might want
 to have an external link to the technology or some more background information
-to let the reader know about what they are about to do. It is also required. Do
-not add another paragraph. Make sure all sections have anchors. The intro
-requires the correct role. Put a horizontal line after the introduction section.
+to let the reader know about what they are about to do. It is also required.
 
 '''
+
+old devcenter info - https://developers.openshift.com/languages/nodejs/
+
+[[nodejs-basics]]
+=== NodeJS Basics
+
+1. The application source repo should include a single web process that is instructed to bind to `8080` to connect to the load-balancer. multipaas might also be useful
+2. Include a link:https://docs.npmjs.com/files/package.json[package.json] file with `"dependencies"` and link:https://docs.npmjs.com/misc/scripts[`"scripts"`] sections
+
+[source,json:package.json]
+----
+{
+  "name": "js-service-name",
+  "description": "my nodejs server example",
+  "dependencies": {
+    "nodemon": "^1.9.2",
+    "multipaas": "^0.2.3"
+  },
+  "scripts": {
+    "dev"  : "nodemon server.js",
+    "start": "node server.js"
+  },
+  "main": "server.js"
+}
+----
+
+[[getting-started]]
+=== Getting Started
+
+[[cli]]
+==== Command Line
+
+Schedule a new build and deployment, adding source code from "REPO_NAME" to a new image layer on top of "BASE_IMAGE":
+
+    oc new-app BASE_IMAGE~REPO_NAME
+
+For example, the link:http://github.com/OpenShiftDemos/pillar-base repo could be added to the link:#Base_Images[system-provided nodejs base image] with:
+
+    oc new-app nodejs~http://github.com/OpenShiftDemos/pillar-base
+
+For advanced usage information, run `oc help new-app`
+
+[[web]]
+==== Web Console
+
+img
+
+img
+
+img
+
+[[configuration]]
+=== Environment Variables
+
+[cols="1,3,1",options="header"]
+|===
+|Name | Description | Default Value
+|*NODE_ENV*
+| NodeJS runtime mode | `production`
+|*NPM_RUN*
+| Select an alternate / custom runtime mode, defined in your link:https://docs.npmjs.com/cli/run-script[`package.json` file's "scripts" section] 
+
+Default init command: `npm run $NPM_RUN` | `start`
+|*DEV_MODE*
+| When set to "true", nodemon will be used to automatically restart the server
+
+When `DEV_MODE` is enabled, the default value for `NODE_ENV` will change to "development" (if not explicitly set), and the `NPM_RUN` config option will have no effect | `false`
+|===
+
+[[base-images]]
+=== Base Images
+NodeJS base images:
+
+* link:https://access.redhat.com/search/#/container-images?q=openshift3%2Fnodejs&documentKind=ImageRepository[RHEL NodeJS v0.10 - Source2Image builder]
+* link:https://hub.docker.com/r/openshift/nodejs-010-centos7[CentOS NodeJS v0.10 - Source2Image builder]
+
+==== Alternative Base Images
+
+Additional NodeJS releases are avaible for link:https://hub.docker.com/r/ryanj/centos7-s2i-nodejs/[Source2Image].
+
+To create OpenShift-compatible NodeJS image using link:https://hub.docker.com/r/ryanj/centos7-nodejs/[Docker ONBUILD]
