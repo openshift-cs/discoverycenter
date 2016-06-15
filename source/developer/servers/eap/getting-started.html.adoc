@@ -1,0 +1,109 @@
+---
+title: JBoss EAP
+---
+:sectanchors:
+:linkattrs:
+:toc: macro
+:toclevels: 4
+:imagesdir: ../../../img
+
+== Getting started with JBoss EAP
+toc::[]
+
+With OpenShift you can easily deploy and run EAP applications. In this tutorial you will learn how to deploy a sample EAP application, make modifications to it, and deploy your changes.
+
+The tutorial assumes you have access to an OpenShift environment, installed the `oc` command line client, and have created a project to work in. You will also need an account on GitHub so you can fork the sample application used by this tutorial.
+
+=== Step 1: The sample application
+The sample application code repository used in this tutorial can be found on GitHub at:
+
+* https://github.com/OpenShiftDemos/eap-sample
+
+To work through this tutorial you should first create a link:https://guides.github.com/activities/forking/[fork] of this repository into your own GitHub account.
+
+image::developer/servers/eap/eap_fork_sample_application.png[]
+
+Once you have forked the sample code repository, take note of the HTTPS URL you would use if cloning your copy of the repository. You will need this URL when deploying the sample application.
+
+image::developer/servers/eap/eap_application_git.png[]
+
+=== Step 2: Deploying the application
+
+To deploy the sample application with OpenShift you can use either the OpenShift web console, or the `oc` command line client.
+
+If using the OpenShift web console, you should select Add to Project when in your project. From the Select Image or Template screen, enter `EAP` in the Filter by keyword field to list only builder images, templates or quick starts related to EAP.
+
+image::developer/servers/eap/eap_image_selection.png[]
+
+Select `jboss-eap-openshift:1.3` from the list of builder images displayed. Enter in `myapp` as the Name for your application, and set the Git Repository URL to be the HTTPS URL which would be used to clone your fork of the sample application code repository.
+
+image::developer/servers/eap/eap_create_app.png[]
+
+You can now select Create and the building and deployment of the sample application will start.
+
+image::developer/servers/eap/eap_continue_to_overview.png[]
+
+Select Continue to overview to view progress as the sample application is built and deployed. When complete, the overview page should show a single instance of your application as having being deployed.
+
+image::developer/servers/eap/.png[]
+
+The _SERVICE_ panel within the overview for the sample application will display the public URL at which the sample application can be accessed. You can click on the displayed link to go directly to it. The sample application should display 'Hello World!'.
+
+If you do not wish to use the OpenShift web console, but prefer to use the commannd line, you can deploy the sample application using the `oc` command line client. This is done using the `oc new-app` command, supplying it the details of the EAP source-to-image builder you wish used, along with the HTTPS URL which would be used to clone your fork of the sample application code repository. We also supply the --name option so we can give the application the name myapp.
+
+[source:console]
+----
+$ oc new-app jboss-eap64-openshift:1.3~https://github.com/openshiftdemos/eap-sample.git --name myapp
+--> Found image 92667ba (7 weeks old) in image stream "jboss-eap64-openshift" in project "openshift" under tag "1.3" for "jboss-eap64-openshift:1.3"
+
+    JBoss EAP 6.4
+    -------------
+    Platform for building and running JavaEE applications on JBoss EAP 6.4
+
+    Tags: builder, javaee, eap, eap6
+
+    * A source build using source code from https://github.com/openshiftdemos/eap-sample.git will be created
+      * The resulting image will be pushed to image stream "myapp:latest"
+    * This image will be deployed in deployment config "myapp"
+    * Ports 8080/tcp, 8443/tcp, 8778/tcp will be load balanced by service "myapp"
+      * Other containers can access this service through the hostname "myapp"
+
+--> Creating resources with label app=myapp ...
+    imagestream "myapp" created
+    buildconfig "myapp" created
+    deploymentconfig "myapp" created
+    service "myapp" created
+--> Success
+    Build scheduled, use 'oc logs -f bc/myapp' to track its progress.
+    Run 'oc status' to view your app.
+----
+
+When `oc new-app` is used to deploy an application, you will need to explicitly expose the service so that it is given a public facing URL. This is done using the `oc expose` command.
+
+[source:console]
+----
+$ oc expose svc/myapp
+route "myapp" exposed
+----
+
+The results of running these commands will be reflected in the OpenShift web console and you can view the status of the application there. You can also use the `oc status` command to determine the current status of the application.
+
+[source:console]
+----
+$ oc status
+In project JBoss EAP example project (jboss-eap-sample) on server https://api.preview.openshift.com:443
+
+http://myapp-jboss-eap-sample.44fs.preview.openshiftapps.com to pod port 8080-tcp (svc/myapp)
+  dc/myapp deploys istag/myapp:latest <-
+    bc/myapp builds http://github.com/openshiftdemos/eap-sample#master with openshift/jboss-eap64-openshift:1.3
+      build #1 builds https://github.com/openshiftdemos/eap-sample.git with openshift/jboss-eap64-openshift:1.3
+    deployment #1 deployed 5 minutes ago - 1 pod
+----
+
+=== Step 3: Making Code Changes
+
+=== Step 4: Customizing your deployment
+
+=== Step 5: Deleting the Application
+
+=== Conclusion

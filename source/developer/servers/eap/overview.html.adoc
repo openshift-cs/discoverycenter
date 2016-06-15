@@ -1,0 +1,32 @@
+---
+title: Overview
+---
+:sectanchors:
+:linkattrs:
+:toc: macro
+:toclevels: 4
+:imagesdir: ../../../img
+
+== JBoss EAP application hosting
+
+OpenShift Online currently supports JBoss EAP `6.4`.
+
+[NOTE]
+====
+JBoss EAP is a popular JEE application server that is especially suited
+to any JEE related development.
+====
+
+Learn more at the link:http://www.jboss.org/products/eap/overview/[JBoss Enterprise Application Platorm  home page].
+
+image::logos/eap-logo.png[]
+
+=== The PHP builder
+
+The php builder provides support for deploying PHP applications
+on OpenShift, using the Apache web server.
+OpenShift-maintained QuickStarts using the php builder include CakePHP,
+WordPress, and Drupal. Popular community-created PHP QuickStarts include
+Laravel, CodeIgniter, Symfony 2.3.6, and Piwik.
+
+link:getting-started.html[→ Get Started With PHP on OpenShift]
