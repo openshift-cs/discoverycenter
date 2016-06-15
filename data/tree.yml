@@ -34,6 +34,10 @@ developer:
     postgresql.html.adoc: "/developer/databases/postgresql.html.adoc"
     redis.html.adoc: "/developer/databases/redis.html.adoc"
     sqlite.html.adoc: "/developer/databases/sqlite.html.adoc"
+  servers:
+    jbosswebserver:
+      overview.html.adoc: "/developer/servers/tomcat/overview.html.adoc"
+      getting-started.html.adoc: "/developer/servers/tomcat/getting-started.html.adoc"
   managing-applications:
     index.html.adoc: "/developer/managing-applications/index.html.adoc"
   faq.html.adoc:   "/developer/faq.html.adoc"

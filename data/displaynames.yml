@@ -1,6 +1,7 @@
 ---
 jbosseap  : "JBoss EAP"
 jbossas   : "JBoss AS"
+jbosswebserver   : "JBoss Web Server"
 wildfly   : "WildFly"
 "jboss-xpaas" : "JBoss xPaas"
 faq          : "FAQ"
