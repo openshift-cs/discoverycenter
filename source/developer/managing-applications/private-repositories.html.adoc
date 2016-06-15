@@ -1,0 +1,54 @@
+---
+title: Private repositories
+---
+
+:imagesdir: ../../../img
+:toc: macro
+:toclevels: 4
+
+== Deploying from private Git repositories
+
+Many times you will find yourself in a situation where you can not use public
+repository for your code, e.g. free public hosted git repository at Github,
+because your code is private. In such case, you simply follow the previous
+steps, but the build is going to fail, because OpenShift will not be able to
+download the source code as it will not have the credentials to authenticate
+itself against the git repository. But do not worry, there is a
+https://docs.openshift.org/latest/dev_guide/builds.html#using-private-repositories-for-builds[solution].
+
+You can upload some private key to OpenShift and authorize its public
+counterpart at the git hosting, and with those in place, OpenShift will be able
+to access your private git repository. I do not want to go into too many
+details here, you can read more in the documentation linked earlier.
+
+First, generate an RSA key that is going to be uploaded to OpenShift
+(be careful not to overwrite your current keys)
+
+[source]
+----
+ssh-keygen -t rsa -C "my_secret_key_for_OpenShift"
+----
+
+Then, you upload the key to OpenShift:
+
+[source]
+----
+oc secrets new-sshauth sshsecret --ssh-privatekey=$HOME/.ssh/id_rsa
+----
+
+After that, you provide this key to the builder service account
+
+[source]
+----
+oc secrets add serviceaccount/builder secrets/sshsecret
+----
+
+Finally, you need to update your build configuration
+
+[source]
+----
+oc patch buildConfig myapp -p '{"spec":{"source:{"sourceSecret":{"name":"sshsecret"}}}}'
+----
+
+And that's it! Authorize the public key for your repository and you are ready
+to go!

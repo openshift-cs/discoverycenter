@@ -6,7 +6,7 @@ title: Getting started
 :toc: macro
 :toclevels: 4
 
-== Getting started with PHP
+== Getting started with Ruby
 
 toc::[]
 
@@ -17,11 +17,10 @@ installed the **oc command line tools**.
 
 === Step 1: The sample application and git repository
 
-==== Sample PHP application
+==== Sample Ruby application
 
-The https://github.com/OpenShiftDemos/os-sample-php[sample application] used
-in this tutorial is a single PHP script, that prints out information about
-the environment using the `phpinfo();` function.
+The https://github.com/OpenShiftDemos/os-sample-ruby[sample application] used
+in this tutorial is based on Sinatra and prints out environment variables.
 
 Even though it's a minimal application it will serve well to describe the basic
 concepts. You do not have to use our sample application, but for the first steps
@@ -42,27 +41,27 @@ repository. Forking is necessary if you want to follow also through `Step 3`.
 ==== Creating new application using terminal
 
 Once ready, open a terminal and at the command prompt, enter the following
-command to create a PHP application (replace the username in the URL if you have
+command to create a Ruby application (replace the username in the URL if you have
 forked, or the whole URL if you are using your own application):
 
 [source]
 ----
-oc new-app --name=myapp php~https://github.com/OpenShiftDemos/os-sample-php.git
+oc new-app --name=myapp ruby~https://github.com/OpenShiftDemos/os-sample-ruby.git
 ----
 
 and the output should look something like this
 
 [source]
 ----
---> Found image bbfc4eb (5 weeks old) in image stream "php" in project "openshift" under tag "5.6" for "php"
+--> Found image d5ca607 (5 weeks old) in image stream "ruby" in project "openshift" under tag "2.2" for "ruby"
 
-    Apache 2.4 with PHP 5.6
-    -----------------------
-    Platform for building and running PHP 5.6 applications
+    Ruby 2.2
+    --------
+    Platform for building and running Ruby 2.2 applications
 
-    Tags: builder, php, php56, rh-php56
+    Tags: builder, ruby, ruby22
 
-    * A source build using source code from https://github.com/OpenShiftDemos/os-sample-php.git will be created
+    * A source build using source code from https://github.com/OpenShiftDemos/os-sample-ruby.git will be created
       * The resulting image will be pushed to image stream "myapp:latest"
     * This image will be deployed in deployment config "myapp"
     * Port 8080/tcp will be load balanced by service "myapp"
@@ -79,17 +78,17 @@ and the output should look something like this
 ----
 
 The `--name=myapp` names the application. By default it would be the base name
-of the URL without extension, in our case `os-sample-php`, but it's much
+of the URL without extension, in our case `os-sample-ruby`, but it's much
 nicer to have the application named `myapp` and that's what we did using this
 switch.
 
-OpenShift automatically linked php with `PHP 5.6` as the latest version. You
-could as well use `php55` as the template to deploy using the specific version,
+OpenShift automatically linked ruby with `Ruby 2.2` as the latest version. You
+could as well use `ruby20` as the template to deploy using the specific version,
 e.g.
 
 [source]
 ----
-oc new-app --name=myapp php55~https://github.com/OpenShiftDemos/os-sample-php.git
+oc new-app --name=myapp ruby20~https://github.com/OpenShiftDemos/os-sample-ruby.git
 ----
 
 OpenShift prints a lot of information that is not that important for
@@ -127,41 +126,41 @@ and you should see something like this
 ----
 http://myapp-demo.44fs.preview.openshiftapps.com to pod port 8080-tcp (svc/myapp)
   dc/myapp deploys istag/myapp:latest <-
-    bc/myapp builds https://github.com/OpenShiftDemos/os-sample-php.git with openshift/php:5.6
-    deployment #1 deployed about a minute ago - 1 pod
+    bc/myapp builds https://github.com/OpenShiftDemos/os-sample-ruby.git with openshift/ruby:2.2
+    deployment #1 deployed 41 seconds ago - 1 pod
 ----
 
 There again is a lot of information that we mostly do not care about at this
 moment but what we need is the first line. It shows you the domain, your
 application is available at. To access the application, simply open the domain
-in your browser of choice and you should see the output of `phpinfo();`.
+in your browser of choice and you should see the environment variables.
 
 ==== Creating new application using web console
 
 You can deploy your application using web console as well as wit cli tools. To
-deploy using web, click on the `Add to project` in the top bar. Then type `php`
-into the _Filter by keyword_ text field. And you will see list of PHP based
+deploy using web, click on the `Add to project` in the top bar. Then type `ruby`
+into the _Filter by keyword_ text field. And you will see list of Ruby based
 templates similar to
 
-image::developer/languages/php/builders-list.png[]
+image::developer/languages/ruby/builders-list.png[]
 
-select `php:latest` and fill in the form like this
+select `ruby:latest` and fill in the form like this
 
-image::developer/languages/php/new-app.png[]
+image::developer/languages/ruby/new-app.png[]
 
 depending on your selection of forking or not deploying the sample application
 you will need to adjust the URL accordingly. And finally click `Create` and you
 will be taken to summary page like this
 
-image::developer/languages/php/new-app-overview.png[]
+image::developer/languages/ruby/new-app-overview.png[]
 
 and click `Continue to overview`. On the overview page you will see detail of
 your new deployment similar to
 
-image::developer/languages/php/new-deployment.png[]
+image::developer/languages/ruby/new-deployment.png[]
 
 Clicking the URL in the top white box will take you straight to your newly
-deployed application with the information from the `phpinfo();` function.
+deployed application with the environment variables.
 
 === Step 3: Making first changes
 
@@ -173,7 +172,7 @@ username/organization.
 
 [source]
 ----
-oc new-app --name=myapp php~https://github.com/[your user name]/os-sample-php.git
+oc new-app --name=myapp ruby~https://github.com/[your user name]/os-sample-ruby.git
 ----
 
 Except for that, the whole process process in the Step 1 is the same.
@@ -188,11 +187,11 @@ server. To do so, first clone the git repository and enter the new directory
 
 [source]
 ----
-git clone https://github.com/[your user name]/os-sample-php.git
-cd os-sample-php
+git clone https://github.com/[your user name]/os-sample-ruby.git
+cd os-sample-ruby
 ----
 
-Edit the `index.php` file to your liking and commit the changes
+Edit the `config.ru` file to your liking and commit the changes
 
 [source]
 ----
@@ -240,27 +239,27 @@ myapp-2
 ----
 
 once the build finishes, refresh your browser with the application and you
-shall see the changed you just made.
+shall see the changes you just made.
 
 ==== Deploying the changes using web console
 
 The web UI allows you to trigger builds as well. In the web console go to
 `Browser -> Builds` and there you will see a line similar to
 
-image::developer/languages/php/new-build.png[]
+image::developer/languages/ruby/new-build.png[]
 
 click on the `myapp` and on the next page click the `Start Build` button in
 the top right corner.
 
-image::developer/languages/php/start-build.png[]
+image::developer/languages/ruby/start-build.png[]
 
 then click `Overview` in the main left navigation panel. You will be taken
 back to the overview page, where you will see that you build is running
 
-image::developer/languages/php/running-build.png[]
+image::developer/languages/ruby/running-build.png[]
 
 and once finished
 
-image::developer/languages/php/finished-build.png[]
+image::developer/languages/ruby/finished-build.png[]
 
 you can again click your application URL and see the changes.
