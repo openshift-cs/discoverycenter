@@ -36,6 +36,7 @@ developer:
     sqlite.html.adoc: "/developer/databases/sqlite.html.adoc"
   managing-applications:
     index.html.adoc: "/developer/managing-applications/index.html.adoc"
+    quota.html.adoc: "/developer/managing-applications/quota.html.adoc"
   faq.html.adoc:   "/developer/faq.html.adoc"
 application-architect:
   index.html.erb: "/application-architect/index.html.erb"
