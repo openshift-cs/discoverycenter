@@ -23,7 +23,7 @@ developer:
     nodejs.html.adoc: "/developer/languages/nodejs.html.adoc"
     perl.html.adoc: "/developer/languages/perl.html.adoc"
     php:
-      overview.html.adoc: "/developer/languages/php/overview.html.adoc"
+      index.html.adoc: "/developer/languages/php/index.html.adoc"
       getting-started.html.adoc: "/developer/languages/php/getting-started.html.adoc"
       dependencies.html.adoc: "/developer/languages/php/dependencies.html.adoc"
       environment-variables.html.adoc: "/developer/languages/php/environment-variables.html.adoc"
@@ -40,6 +40,10 @@ developer:
     sqlite.html.adoc: "/developer/databases/sqlite.html.adoc"
   managing-applications:
     index.html.adoc: "/developer/managing-applications/index.html.adoc"
+  basic-concepts:
+    index.html.adoc:   "/developer/basic-concepts/index.html.adoc"
+    terminology.html.adoc:   "/developer/basic-concepts/terminology.html.adoc"
+    environment-variables.html.adoc: "/developer/basic-concepts/environment-variables.html.adoc"
   faq.html.adoc:   "/developer/faq.html.adoc"
 application-architect:
   index.html.erb: "/application-architect/index.html.erb"

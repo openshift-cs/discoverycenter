@@ -1,0 +1,29 @@
+---
+title: Terminology
+---
+
+== OpenShift-Specific Terminology
+
+There is some basic terminology that is specific to OpenShift to describe the
+platform. It is important to clarify these terms since they will be used
+throughout your interactions with OpenShift:
+
+=== Application
+This is your typical web application that will run on OpenShift. To try to
+provide some security for your applications, the only ports exposed to incoming
+traffic are HTTP (80), HTTPS (443), and SSH (22).
+
+=== Container
+A container is a set of resources that allows you to run your applications. Your
+containers run on OpenShift in the cloud.
+
+=== Builder image
+
+=== Client tools, Web Console, or Eclipse plug-ins
+You can interact with the OpenShift platform via `oc` client command-line tools
+you install on your local machine, the OpenShift Web Console, or a plug-in you
+install in Eclipse to interact with your application in the OpenShift cloud.
+The only time you must use these tools is when you are managing the
+infrastructure or components of your application. For example, you would use
+these tools when creating an application. Most of the rest of your work with
+your application will happen through Git.
