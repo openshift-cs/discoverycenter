@@ -1,0 +1,31 @@
+---
+title: Overview
+---
+:sectanchors:
+:linkattrs:
+:toc: macro
+:toclevels: 4
+:imagesdir: ../../../img
+
+== Wildfly application hosting
+
+OpenShift Online currently supports Wildfly `10`.
+
+[NOTE]
+====
+Wildfly is a popular JEE Open Source Application Server that is especially suited
+to any JEE related development.
+====
+
+Learn more at the link:http://www.wildfly.org/[Wildfly home page].
+
+image::logos/wildfly-logo.png[]
+
+
+
+=== The Wildfly builder
+
+The Wildfly builder provides support for deploying JEE applications
+on OpenShift, using Apache Maven as build tool.
+
+link:getting-started.html[→ Get Started With Wildfly on OpenShift]

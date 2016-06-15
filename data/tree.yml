@@ -35,9 +35,9 @@ developer:
     redis.html.adoc: "/developer/databases/redis.html.adoc"
     sqlite.html.adoc: "/developer/databases/sqlite.html.adoc"
   servers:
-    eap:
-      overview.html.adoc: "/developer/servers/eap/overview.html.adoc"
-      getting-started.html.adoc: "/developer/servers/eap/getting-started.html.adoc"
+    wildfly:
+      overview.html.adoc: "/developer/servers/wildfly/overview.html.adoc"
+      getting-started.html.adoc: "/developer/servers/wildfly/getting-started.html.adoc"
   managing-applications:
     index.html.adoc: "/developer/managing-applications/index.html.adoc"
   faq.html.adoc:   "/developer/faq.html.adoc"
