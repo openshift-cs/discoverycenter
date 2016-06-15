@@ -22,7 +22,11 @@ developer:
     java.html.adoc: "/developer/languages/java.html.adoc"
     nodejs.html.adoc: "/developer/languages/nodejs.html.adoc"
     perl.html.adoc: "/developer/languages/perl.html.adoc"
-    php.html.adoc: "/developer/languages/php.html.adoc"
+    php:
+      overview.html.adoc: "/developer/languages/php/overview.html.adoc"
+      getting-started.html.adoc: "/developer/languages/php/getting-started.html.adoc"
+      dependencies.html.adoc: "/developer/languages/php/dependencies.html.adoc"
+      environment-variables.html.adoc: "/developer/languages/php/environment-variables.html.adoc"
     python.html.adoc: "/developer/languages/python.html.adoc"
     ruby.html.adoc: "/developer/languages/ruby.html.adoc"
     static.html.adoc: "/developer/languages/static.html.adoc"

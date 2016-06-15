@@ -1,0 +1,27 @@
+---
+title: Overview
+---
+
+== PHP application hosting
+
+OpenShift Online currently supports PHP `5.5` and `5.6`.
+
+[NOTE]
+====
+PHP is a popular general-purpose scripting language that is especially suited
+to web development.
+====
+
+Learn more at the http://www.php.net/[PHP home page].
+
+image::logos/php-logo.png[]
+
+=== The PHP builder
+
+The php builder provides support for deploying PHP applications
+on OpenShift, using the Apache web server.
+OpenShift-maintained QuickStarts using the php builder include CakePHP,
+WordPress, and Drupal. Popular community-created PHP QuickStarts include
+Laravel, CodeIgniter, Symfony 2.3.6, and Piwik.
+
+link:getting-started.html[→ Get Started With PHP on OpenShift]
