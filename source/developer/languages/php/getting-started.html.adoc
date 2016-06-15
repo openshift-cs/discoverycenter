@@ -77,7 +77,7 @@ and the output should look something like this
     Run 'oc status' to view your app.
 ----
 
-The `--name=sample` names the application. By default it would be the base name
+The `--name=myapp` names the application. By default it would be the base name
 of the URL without extension, in our case `openshift-sample-php`, but it's much
 nicer to have the application named `myapp` and that's what we did using this
 switch.
