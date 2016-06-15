@@ -97,7 +97,7 @@ the internet and if we can see it running. For exposing application to the
 outside world, OpenShift has a concept of `routes` that map domain names to
 specific applications. To expose our application we need to know the name of
 the internal service in all the information printed when we created our
-application it's this line `service "sample" created`. OpenShift automatically
+application it's this line `service "myapp" created`. OpenShift automatically
 created new service, according to the name of the application. Now, let's
 expose that service, to do that, run this command
 
@@ -212,7 +212,7 @@ and that's it, the change is in the git repository, now let's go and deploy it.
 
 OpenShift already knows how to reach your git repository as it did while first
 deploying the application. As it created the service that we referenced before
-it also created buildconfig `buildconfig "sample" created`.
+it also created buildconfig `buildconfig "myapp" created`.
 
 [NOTE]
 ====
@@ -220,7 +220,7 @@ BuildConfigs contain information necessary for building an application. It also
 contain information what strategy should be used for building it. In our case
 the strategy is `Source`. For strategy from source it contains the URL of git
 repository to fetch the source code from and other important stuff. you can
-check more details by running `oc describe bc sample`.
+check more details by running `oc describe bc myapp`.
 ====
 
 BuildConfig is the reference for building stuff and allows us to trigger
@@ -228,14 +228,14 @@ the building process, to do this run
 
 [source]
 ----
-oc start-build sample
+oc start-build myapp
 ----
 
 and you should see something like this
 
 [source]
 ----
-sample-2
+myapp-2
 ----
 
 once the build finishes, refresh your browser with the application and you
