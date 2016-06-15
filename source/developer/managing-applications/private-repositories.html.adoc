@@ -14,7 +14,7 @@ because your code is private. In such case, you simply follow the previous
 steps, but the build is going to fail, because OpenShift will not be able to
 download the source code as it will not have the credentials to authenticate
 itself against the git repository. But do not worry, there is a
-https://docs.openshift.org/latest/dev_guide/builds.html#using-private-repositories-for-builds[solution].
+https://docs.openshift.com/online/dev_guide/builds.html#ssh-key-authentication[solution].
 
 You can upload some private key to OpenShift and authorize its public
 counterpart at the git hosting, and with those in place, OpenShift will be able
