@@ -35,7 +35,7 @@ developer:
     redis.html.adoc: "/developer/databases/redis.html.adoc"
     sqlite.html.adoc: "/developer/databases/sqlite.html.adoc"
   servers:
-    eap:
+    jbosseap:
       overview.html.adoc: "/developer/servers/eap/overview.html.adoc"
       getting-started.html.adoc: "/developer/servers/eap/getting-started.html.adoc"
   managing-applications:
