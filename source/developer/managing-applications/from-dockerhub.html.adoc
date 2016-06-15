@@ -47,8 +47,8 @@ Running this command deploys the official Jenkins container from DockerHub. You
 should see output something like this
 
 [source]
------->
-Found image 53a7c1e (5 weeks old) in image stream "jenkins" in project "openshift" under tag "1" for "jenkins"
+----
+--> Found image 53a7c1e (5 weeks old) in image stream "jenkins" in project "openshift" under tag "1" for "jenkins"
 
     * This image will be deployed in deployment config "jenkins"
     * Ports 50000/tcp, 8080/tcp will be load balanced by service "jenkins"
