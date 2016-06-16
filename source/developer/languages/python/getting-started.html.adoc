@@ -183,7 +183,7 @@ http://myapp-python-demos.44fs.preview.openshiftapps.com to pod port 8080-tcp (s
     deployment #1 deployed about an hour ago
 ----
 
-Builds can also be triggered through the OpenShift web console by clicking throgh _Browse_, then _Builds_, and then selecting the name of your application, `myapp` in this case, and finally clicking on the _Start Build_ button.
+Builds can also be triggered through the OpenShift web console by clicking on _Browse_, _Builds_, and then selecting the name of your application, `myapp` in this case, and finally clicking on the _Start Build_ button.
 
 Visit the URL for your application and you should see the change you made.
 
