@@ -141,7 +141,7 @@ if __name__ == "__main__":
 
 Edit this file and change the message "Hello World!" to a greeting of your own.
 
-If you are making the changes through the GitHub web interface the changes will be automatically pushed back into the code repository when you save the change. If working on your local machine, you will need to use mark the file as changed, commit the change and push the changes back up to the code repository on GitHub.
+If you are making the changes through the GitHub web interface the changes will be automatically pushed back into the code repository when you save the change. If working on your local machine, you will need to mark the file as changed, commit the change and push the changes back up to the code repository on GitHub.
 
 [source:console]
 ----
@@ -161,7 +161,7 @@ To https://github.com/GrahamDumpleton/os-sample-python.git
    da9328c..21bce2a  master -> master
 ----
 
-The code changes have now been save back into the code repository on GitHub. To deploy the changes to OpenShift start a build using the `oc start-build` command, with the name of the application as the argument.
+The code changes have now been saved back into the code repository on GitHub. To deploy the changes to OpenShift start a build using the `oc start-build` command, with the name of the application as the argument.
 
 [source:console]
 ----
@@ -169,7 +169,7 @@ $ oc start-build myapp
 myapp-2
 ----
 
-Run `oc status` and you can monitor the progress of the build and when complete will show that a second deployment of your application has occurred, with the changes.
+Run `oc status` and you can monitor the progress of the build and when complete it will show that a second deployment of your application has occurred.
 
 [source:console]
 ----
