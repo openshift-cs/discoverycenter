@@ -29,6 +29,7 @@ developer:
       dependency-management.html.adoc: "/developer/languages/python/package-installation.html.adoc"
       environment-variables.html.adoc: "/developer/languages/python/environment-variables.html.adoc"
       advanced-deployment.html.adoc: "/developer/languages/python/advanced-deployment.html.adoc"
+      community-resources.html.adoc: "/developer/languages/python/community-resources.html.adoc"
     ruby.html.adoc: "/developer/languages/ruby.html.adoc"
     static.html.adoc: "/developer/languages/static.html.adoc"
   databases:
