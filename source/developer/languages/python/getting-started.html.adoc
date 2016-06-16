@@ -20,7 +20,7 @@ The tutorial assumes you have access to an OpenShift environment, installed the 
 
 The sample application code repository used in this tutorial can be found on GitHub at:
 
-* https://github.com/OpenShiftDemos/python-flask-gunicorn
+* https://github.com/OpenShiftDemos/os-sample-python
 
 To work through this tutorial you should first create a link:https://guides.github.com/activities/forking/[fork] of this repository into your own GitHub account.
 
@@ -38,7 +38,7 @@ If using the OpenShift web console, you should select _Add to Project_ when in y
 
 image::developer/languages/python/select-image-or-template.png[Select Image or Template]
 
-Select `python:2.7` from the list of builder images displayed. Enter in `myapp` as the _Name_ for your application, and set the _Git Repository URL_ to be the HTTPS URL which would be used to clone your fork of the sample application code repository.
+Select `python:latest` from the list of builder images displayed. Enter in `myapp` as the _Name_ for your application, and set the _Git Repository URL_ to be the HTTPS URL which would be used to clone your fork of the sample application code repository.
 
 image::developer/languages/python/create-python-application.png[Create Python Application]
 
@@ -52,20 +52,20 @@ image::developer/languages/python/application-overview.png[Application Overview]
 
 The _SERVICE_ panel within the overview for the sample application will display the public URL at which the sample application can be accessed. You can click on the displayed link to go directly to it. The sample application should display 'Hello World!'.
 
-If you do not wish to use the OpenShift web console, but prefer to use the commannd line, you can deploy the sample application using the `oc` command line client. This is done using the `oc new-app` command, supplying it the details of the Python source-to-image builder you wish used, along with the HTTPS URL which would be used to clone your fork of the sample application code repository. We also supply the `--name` option so we can give the application the name `myapp`.
+If you do not wish to use the OpenShift web console, but prefer to use the commannd line, you can deploy the sample application using the `oc` command line client. This is done using the `oc new-app` command, supplying it with the name of the builder to use, in this case `python`, along with the HTTPS URL which would be used to clone your fork of the sample application code repository. We also supply the `--name` option so we can give the application the name `myapp`.
 
 [source:console]
 ----
-$ oc new-app python:2.7~https://github.com/GrahamDumpleton/python-flask-gunicorn.git --name myapp
---> Found image fba5a51 (5 weeks old) in image stream "python" in project "openshift" under tag "2.7" for "python:2.7"
+$ oc new-app python~https://github.com/GrahamDumpleton/os-sample-python.git --name myapp
+--> Found image 772dc19 (5 weeks old) in image stream "python" in project "openshift" under tag "3.4" for "python"
 
-    Python 2.7
+    Python 3.4
     ----------
-    Platform for building and running Python 2.7 applications
+    Platform for building and running Python 3.4 applications
 
-    Tags: builder, python, python27, rh-python27
+    Tags: builder, python, python34, rh-python34
 
-    * A source build using source code from https://github.com/GrahamDumpleton/python-flask-gunicorn.git will be created
+    * A source build using source code from https://github.com/GrahamDumpleton/os-sample-python.git will be created
       * The resulting image will be pushed to image stream "myapp:latest"
     * This image will be deployed in deployment config "myapp"
     * Port 8080/tcp will be load balanced by service "myapp"
@@ -98,16 +98,12 @@ In project python-demos on server https://api.preview.openshift.com:443
 
 http://myapp-python-demos.44fs.preview.openshiftapps.com to pod port 8080-tcp (svc/myapp)
   dc/myapp deploys istag/myapp:latest <-
-    bc/myapp builds https://github.com/GrahamDumpleton/python-flask-gunicorn.git with openshift/python:2.7
-    deployment #1 deployed 5 minutes ago - 1 pod
+    bc/myapp builds https://github.com/GrahamDumpleton/os-sample-python.git with openshift/python:3.4
+    deployment #1 deployed 20 seconds ago - 1 pod
 ----
 
 === Step 3: Making Code Changes
 
-=== Step 4: Adding Extra Packages
-
-=== Step 5: Changing the WSGI Server
-
-=== Step 6: Deleting the Application
+=== Step 4: Deleting the Application
 
 === Conclusion
