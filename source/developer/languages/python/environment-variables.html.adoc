@@ -35,4 +35,6 @@ Note that automatic execution of database migration when deploying a Django appl
 
 |===
 
+These environment variables can be set as part of your source code repository by adding them into the `.s2i/environment` file.
+
 '''
