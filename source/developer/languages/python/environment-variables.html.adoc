@@ -35,13 +35,4 @@ Note that automatic execution of database migration when deploying a Django appl
 
 |===
 
-Environment variables can be set when initially creating a web application from the OpenShift web console, by selecting _Show advanced routing, build, and deployment options_. If using the `oc` command line, environment variables can be set using the `--env` option.
-
-[source]
---
-$ oc new-app python~https://gitlab.com/osevg/python-django-modwsgi.git --env DISABLE_MIGRATE=1
---
-
-In the case of a web application which is already running, environment variables can be set from the build or deployment configuration through the OpenShift web console, or `oc set env` can be used from the command line.
-
 '''
