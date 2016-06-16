@@ -72,5 +72,88 @@ The `APP_CONFIG` environment variable can be set to the name of a Python code fi
 
 The configuration file can also be used to set the type of worker, allowing you to use alternate workers such as those for `gevent` or `eventlet`. If using an alternate type of worker, you will need to ensure that any additional Python packages required for it are listed in the `requirements.txt` or `setup.py` file.
 
+=== Running With Apache/mod_wsgi
+
+To run your WSGI application with Apache/mod_wsgi, you can use mod_wsgi-express. This can be installed by listing `mod_wsgi` in the `requirements.txt` or `setup.py` files.
+
+Unlike when using Apache/mod_wsgi directly, where you would need to configure Apache yourself, mod_wsgi-express will handle all configuration of Apache and mod_wsgi for you, making it very easy to deploy your WSGI application. When mod_wsgi-express configures Apache, it uses a configuration which has been set up specifically for hosting Python web applications, providing you a better baseline performance than a generic Apache configuration.
+
+Normally `mod_wsgi-express` would be executed from the command line, it can however also be launched from Python code included in `app.py` using the Python `mod_wsgi` package. For example:
+
+[source,python]
+--
+import mod_wsgi.server
+
+mod_wsgi.server.start(
+  '--log-to-terminal',
+  '--port', '8080',
+  '--trust-proxy-header', 'X-Forwarded-For',
+  '--trust-proxy-header', 'X-Forwarded-Port',
+  '--trust-proxy-header', 'X-Forwarded-Proto',
+  '--url-alias', '/static/', './static/',
+  '--application-type', 'module',
+  '--entry-point', 'demo.wsgi',
+)
+--
+
+The key options provided to mod_wsgi-express via the `mod_wsgi.server.start()` call are as follows:
+
+* The `--log-to-terminal` option ensures that all logging from Apache is sent to the console and is available to OpenShift.
+* The `--port` option ensures that Apache is listening on port 8080.
+* The `--trust-proxy-header` options ensure that mod_wsgi fixes up the WSGI request details based on details passed via the HTTP proxy. This means you do not have to integrate a WSGI middleware into your application, or enable a framework specific mechanism, to make the changes.
+* The `--url-alias` option indicates to Apache that it should host static files at the location specified by the first argument, from the directory given as second argument. 
+* The `--application-type` option indicates to mod_wsgi that the WSGI application can be found by importing a specified module.
+* The `--entry-point` option indicates to mod_wsgi the module containing the WSGI application, in this case `demo.wsgi`. This could be an installed module, or a part of a local package in the source code repository where the `wsgi.py` file is located at the path `demo/wsgi.py`. If the `wsgi.py` file was located in the top level directory of the source code repository, the argument to the `--entry-point` option would instead have been `wsgi`.
+
+For a complete list of the options that mod_wsgi-express provides, you can install the `mod_wsgi` module locally, or `oc rsh` into the running application pod, and run `mod_wsgi-express start-server --help`. Note that all options when passed to `mod_wsgi.server.start()` need to be passed as strings.
+
+=== Running With uWSGI
+
+To run your WSGI application with uWSGI, you will need to list `uWSGI` in the `requirements.txt` or `setup.py` files.
+
+As uWSGI is normally paired with `nginx` and `nginx` is not being used, uWSGI will need to be configured to accept HTTP connections directly. In this mode uWSGI does not perform as well as when paired with `nginx` using its own wire protocol. Static files, when hosted by `uWSGI` directly rather than by `nginx` is also not as perfomant. You may therefore find `mod_wsgi-express` a better option for use in the containerized environment provided by OpenShift.
+
+Running uWSGI entails running the `uwsgi` program from the command line. This can be done from an `app.py` file using `exec` functions of the `os` module, but so that it isn't necessary to hard code the path to the `uwsgi` program, it is better to use an intermediary `app.sh` script file. The `app.py` file should therefore include:
+
+[source,python]
+--
+import os
+
+os.execl('/opt/app-root/src/app.sh', 'uwsgi')
+--
+
+The `app.sh` file should then include:
+
+[source,console]
+--
+#!/bin/bash
+
+exec uwsgi \
+    --http-socket :8080 \
+    --die-on-term \
+    --master \
+    --single-interpreter \
+    --enable-threads \
+    --threads=5 \
+    --thunder-lock \
+    --static-map /static=static \
+    --module demo.wsgi
+--
+
+The `app.sh` script file should be executable and placed in the top level directory of your source code repository along with the `app.py` file.
+
+The key options provided to the `uwsgi` program are as follows:
+
+* The `--http-socket` option and argument `:8080` ensures that uWSGI is listening on port 8080 using an INET socket.
+* The `--die-on-term` option ensures that uWSGI will shutdown when it receives a `TERM` signal to stop the container, rather than restart worker processes.
+* The `--master` option ensures that master mode of uWSGI is used for managing worker processes. This is required otherwise uWSGI will not correctly reap zombie processes when run as process ID 1 inside of a container.
+* The `--single-interpreter` option ensures that uWSGI doesn't not use Python sub interpreters for hosting the WSGI application. This avoids problems with Python C extensions that will not work in sub interpreters.
+* The `--enable-threads` option ensures that thread support in the Python interpreter is initialised. If this is not done and an application wished to create background threads, they will not run.
+* The `--threads` option is used to start multiple request handler threads in each worker process, rather than the default of 1.
+* The `--thunder-lock` option enables a fairer mechanism for load balancing requests when multiple worker processes are being used.
+* The `--static-map` option indicates to uWSGI that it should host static files at the location specified by the first argument, from the directory given as second argument.
+* The `--module` option indicates to uWSGI the module containing the WSGI application, in this case `demo.wsgi`. This could be an installed module, or a part of a local package in the source code repository where the `wsgi.py` file is located at the path `demo/wsgi.py`. If the `wsgi.py` file was located in the top level directory of the source code repository, the argument would instead have been `wsgi`.
+
+For a complete list of options that the `uwsgi` program accepts, you can install it locally, or `oc rsh` into the running application pod and run `uwsgi --help`.
 
 '''
