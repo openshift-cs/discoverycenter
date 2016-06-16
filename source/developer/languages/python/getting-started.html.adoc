@@ -52,7 +52,7 @@ image::developer/languages/python/application-overview.png[Application Overview]
 
 The _SERVICE_ panel within the overview for the sample application will display the public URL at which the sample application can be accessed. You can click on the displayed link to go directly to it. The sample application should display 'Hello World!'.
 
-If you do not wish to use the OpenShift web console, but prefer to use the commannd line, you can deploy the sample application using the `oc` command line client. This is done using the `oc new-app` command, supplying it with the name of the builder to use, in this case `python`, along with the HTTPS URL which would be used to clone your fork of the sample application code repository. We also supply the `--name` option so we can give the application the name `myapp`.
+If you do not wish to use the OpenShift web console, but prefer to use the command line, you can deploy the sample application using the `oc` command line client. This is done using the `oc new-app` command, supplying it with the name of the builder to use, in this case `python`, along with the HTTPS URL which would be used to clone your fork of the sample application code repository. We also supply the `--name` option so we can give the application the name `myapp`.
 
 [source:console]
 ----
