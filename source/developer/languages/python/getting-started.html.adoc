@@ -104,6 +104,105 @@ http://myapp-python-demos.44fs.preview.openshiftapps.com to pod port 8080-tcp (s
 
 === Step 3: Making Code Changes
 
+To make changes to the sample application you can either make changes through the GitHub web interface, or you can make a link:https://help.github.com/articles/cloning-a-repository/[clone] of your fork of the sample application to your local machine.
+
+[source:console]
+----
+$ git clone https://github.com/GrahamDumpleton/os-sample-python.git
+Cloning into 'os-sample-python'...
+remote: Counting objects: 43, done.
+remote: Compressing objects: 100% (28/28), done.
+remote: Total 43 (delta 11), reused 43 (delta 11), pack-reused 0
+Unpacking objects: 100% (43/43), done.
+Checking connectivity... done.
+
+$ cd os-sample-python/
+
+$ ls
+README.md		config.py		requirements.txt	wsgi.py
+----
+
+Ensure you use the URL for your fork of the sample application, otherwise you will not be able to push back any changes you make.
+
+The sample application is a simple Flask application, with everything contained in the `wsgi.py` file.
+
+[source:python]
+----
+from flask import Flask
+application = Flask(__name__)
+
+@application.route("/")
+def hello():
+    return "Hello World!"
+
+if __name__ == "__main__":
+    application.run()
+----
+
+Edit this file and change the message "Hello World!" to a greeting of your own.
+
+If you are making the changes through the GitHub web interface the changes will be automatically pushed back into the code repository when you save the change. If working on your local machine, you will need to use mark the file as changed, commit the change and push the changes back up to the code repository on GitHub.
+
+[source:console]
+----
+$ git add wsgi.py
+
+$ git commit -m 'Change greeting.'
+[master 21bce2a] Change greeting.
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ 
+$ git push
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 302 bytes | 0 bytes/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+To https://github.com/GrahamDumpleton/os-sample-python.git
+   da9328c..21bce2a  master -> master
+----
+
+The code changes have now been save back into the code repository on GitHub. To deploy the changes to OpenShift start a build using the `oc start-build` command, with the name of the application as the argument.
+
+[source:console]
+----
+$ oc start-build myapp
+myapp-2
+----
+
+Run `oc status` and you can monitor the progress of the build and when complete will show that a second deployment of your application has occurred, with the changes.
+
+[source:console]
+----
+$ oc status
+In project python-demos on server https://api.preview.openshift.com:443
+
+http://myapp-python-demos.44fs.preview.openshiftapps.com to pod port 8080-tcp (svc/myapp)
+  dc/myapp deploys istag/myapp:latest <-
+    bc/myapp builds https://github.com/GrahamDumpleton/os-sample-python.git with openshift/python:3.4
+    deployment #2 deployed about a minute ago - 1 pod
+    deployment #1 deployed about an hour ago
+----
+
+Builds can also be triggered through the OpenShift web console by clicking throgh _Browse_, then _Builds_, and then selecting the name of your application, `myapp` in this case, and finally clicking on the _Start Build_ button.
+
+Visit the URL for your application and you should see the change you made.
+
 === Step 4: Deleting the Application
 
+When you are done with the sample application, or you feel like starting over again, you can delete the application from OpenShift by running the `oc delete all` command, using a selector label to identify the application by name.
+
+[source:console]
+----
+$ oc delete all --selector app=myapp
+buildconfig "myapp" deleted
+imagestream "myapp" deleted
+deploymentconfig "myapp" deleted
+route "myapp" deleted
+service "myapp" deleted
+----
+
+The command will show a list of all the different definitions, as it deletes them, which were created for you when deploying the application. 
+
 === Conclusion
+
+In this quick tutorial we have shown how easy it is to deploy a Python application. You may have noted that you did not have to do anything yourself to install the required Python packages or start the WSGI server. This is because the OpenShift Python builder will install any packages for you which are listed in the `requirements.txt` file of the source code repository. So long as one of those packages is `gunicorn` and you have a `wsgi.py` file, the Gunicorn WSGI server will also be automatically started up to host your application when it is deployed.
