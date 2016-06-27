@@ -47,7 +47,7 @@ Finally, you need to update your build configuration
 
 [source]
 ----
-oc patch buildConfig myapp -p '{"spec":{"source:{"sourceSecret":{"name":"sshsecret"}}}}'
+oc patch buildConfig myapp -p '{"spec":{"source":{"sourceSecret":{"name":"sshsecret"}}}}'
 ----
 
 And that's it! Authorize the public key for your repository and you are ready

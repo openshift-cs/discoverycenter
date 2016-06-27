@@ -1,0 +1,20 @@
+---
+title: Overview
+---
+
+:imagesdir: ../../../img
+
+== Python Application Hosting
+toc::[]
+
+With OpenShift you can easily deploy and run Python applications using your favorite frameworks and databases. All of the major Python WSGI based web frameworks, Django, Flask and Pyramid can be used. Bundled support for Gunicorn is included when running WSGI based applications, or you can choose to use other WSGI servers such as mod_wsgi-express and uWSGI. Prefer to run asynchronous event based applications, you can use frameworks such as Tornado, Twisted, or newer asyncio based systems.
+
+[NOTE]
+====
+
+image::logos/python-logo.png[Python logo]
+
+Python is a general-purpose, high-level programming language whose design philosophy emphasizes code readability. The Web Server Gateway Interface (WSGI) defines a simple and universal interface between web servers and web applications or frameworks for the Python programming language. link:https://www.python.org/[-> Learn more]
+====
+
+'''
