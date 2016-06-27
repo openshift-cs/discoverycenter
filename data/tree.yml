@@ -51,6 +51,9 @@ developer:
     jbosswebserver:
       overview.html.adoc: "/developer/servers/tomcat/overview.html.adoc"
       getting-started.html.adoc: "/developer/servers/tomcat/getting-started.html.adoc"
+    wildfly:
+      overview.html.adoc: "/developer/servers/wildfly/overview.html.adoc"
+      getting-started.html.adoc: "/developer/servers/wildfly/getting-started.html.adoc"
   managing-applications:
     index.html.adoc: "/developer/managing-applications/index.html.adoc"
   basic-concepts:

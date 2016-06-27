@@ -6,7 +6,7 @@ title: Getting started
 :toclevels: 4
 :imagesdir: ../../../img
 
-== Getting started with JBoss Enterprise Application Platform (EAP)
+== Getting started with Wildfly
 
 toc::[]
 
@@ -46,25 +46,25 @@ forked, or the whole URL if you are using your own application):
 
 [source]
 ----
-oc new-app --name=myapp jboss-eap64-openshift~https://github.com/openshiftdemos/os-sample-java-web.git
+oc new-app --name=myapp wildfly~https://github.com/openshiftdemos/os-sample-java-web.git
 ----
 
 and the output should look something like this
 
 [source]
 ----
---> Found image 92667ba (7 weeks old) in image stream "jboss-eap64-openshift" in project "openshift" under tag "latest" for "jboss-eap64-openshift"
+--> Found image 0fe7da4 (4 weeks old) in image stream "wildfly" in project "openshift" under tag "10.0" for "wildfly"
 
-    JBoss EAP 6.4
-    -------------
-    Platform for building and running JavaEE applications on JBoss EAP 6.4
+    WildFly 10.0.0.Final
+    --------------------
+    Platform for building and running JEE applications on WildFly 10.0.0.Final
 
-    Tags: builder, javaee, eap, eap6
+    Tags: builder, wildfly, wildfly10
 
     * A source build using source code from https://github.com/openshiftdemos/os-sample-java-web.git will be created
       * The resulting image will be pushed to image stream "myapp:latest"
     * This image will be deployed in deployment config "myapp"
-    * Ports 8080/tcp, 8443/tcp, 8778/tcp will be load balanced by service "myapp"
+    * Port 8080/tcp will be load balanced by service "myapp"
       * Other containers can access this service through the hostname "myapp"
 
 --> Creating resources with label app=myapp ...
@@ -82,13 +82,13 @@ of the URL without extension, in our case `os-sample-java-web`, but it's much
 nicer to have the application named `myapp` and that's what we did using this
 switch.
 
-OpenShift automatically linked jboss-eap64-openshift with version 1.3 of the `JBoss EAP 6.4` image, that corresponds to the current latest version. You
-could as well use `jboss-eap64-openshift:1.2` as prefix to deploy using the specific version,
+OpenShift automatically linked wildfly with version 10.0 of the `Wildfly` image, that corresponds to the current latest version. You
+could as well use `wildfly:10` as prefix to deploy using the specific version,
 e.g.
 
 [source]
 ----
-oc new-app jboss-eap64-openshift:1.2~https://github.com/openshiftdemos/os-sample-java-web.git
+oc new-app wildfly:10.0~https://github.com/openshiftdemos/os-sample-java-web.git
 ----
 
 OpenShift prints a lot of information that is not that important for
@@ -124,10 +124,10 @@ and you should see something like this
 
 [source]
 ----
-http://myapp-jboss-eap-sample.44fs.preview.openshiftapps.com to pod port 8080-tcp (svc/myapp)
+http://myapp-sample-project.44fs.preview.openshiftapps.com to pod port 8080-tcp (svc/myapp)
   dc/myapp deploys istag/myapp:latest <-
-    bc/myapp builds https://github.com/openshiftdemos/os-sample-java-web.git with openshift/jboss-eap64-openshift:latest
-    deployment #1 deployed 5 minutes ago - 1 pod
+    bc/myapp builds https://github.com/openshiftdemos/os-sample-java-web.git with openshift/wildfly:10.0
+    deployment #1 deployed 55 seconds ago - 1 pod
 ----
 
 There again is a lot of information that we mostly do not care about at this
@@ -138,26 +138,26 @@ in your browser of choice and you should see a `Hello World` message.
 ==== Creating new application using web console
 
 You can deploy your application using web console as well as with cli tools. To
-deploy using web, click on the `Add to project` in the top bar. Then type `eap`
-into the _Filter by keyword_ text field. And you will see list of EAP based
+deploy using web, click on the `Add to project` in the top bar. Then type `wildfly`
+into the _Filter by keyword_ text field. And you will see list of Wildfly based
 templates similar to
 
-image::developer/servers/eap/eap_image_selection.png[]
+image::developer/servers/wildfly/image_selection.png[]
 
-select `jboss-eap64-openshift:1.3` and fill in the form like this
+select `wildfly:latest` and fill in the form like this
 
-image::developer/servers/eap/eap_create_app.png[]
+image::developer/servers/wildfly/create_app.png[]
 
 depending on your selection of forking or not deploying the sample application
 you will need to adjust the URL accordingly. And finally click `Create` and you
 will be taken to summary page like this
 
-image::developer/servers/eap/eap_continue_to_overview.png[]
+image::developer/servers/wildfly/continue_to_overview.png[]
 
 and click `Continue to overview`. On the overview page you will see detail of
 your new deployment similar to
 
-image::developer/servers/eap/eap_new_deployment.png[]
+image::developer/servers/wildfly/new_deployment.png[]
 
 Clicking the URL in the top white box will take you straight to your newly
 deployed application that will show the `Hello World` message.
@@ -172,7 +172,7 @@ username/organization.
 
 [source]
 ----
-oc new-app --name=myapp jboss-eap64-openshift~https://github.com/[your user name]/os-sample-java-web.git
+oc new-app --name=myapp wildfly~https://github.com/[your user name]/os-sample-java-web.git
 ----
 
 Except for that, the whole process process in the Step 1 is the same.
@@ -246,20 +246,20 @@ shall see the changed you just made.
 The web UI allows you to trigger builds as well. In the web console go to
 `Browser -> Builds` and there you will see a line similar to
 
-image::developer/servers/eap/eap_new_build.png[]
+image::developer/servers/wildfly/new_build.png[]
 
 click on the `myapp` and on the next page click the `Start Build` button in
 the top right corner.
 
-image::developer/servers/eap/start-build.png[]
+image::developer/servers/wildfly/start-build.png[]
 
 then click `Overview` in the main left navigation panel. You will be taken
 back to the overview page, where you will see that you build is running
 
-image::developer/servers/eap/eap_running_build.png[]
+image::developer/servers/wildfly/running_build.png[]
 
 and once finished
 
-image::developer/servers/eap/eap_finished_build.png[]
+image::developer/servers/wildfly/finished_build.png[]
 
 you can again click your application URL and see the changes.
