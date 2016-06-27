@@ -48,6 +48,9 @@ developer:
     jbosseap:
       overview.html.adoc: "/developer/servers/eap/overview.html.adoc"
       getting-started.html.adoc: "/developer/servers/eap/getting-started.html.adoc"
+    jbosswebserver:
+      overview.html.adoc: "/developer/servers/tomcat/overview.html.adoc"
+      getting-started.html.adoc: "/developer/servers/tomcat/getting-started.html.adoc"
   managing-applications:
     index.html.adoc: "/developer/managing-applications/index.html.adoc"
   basic-concepts:

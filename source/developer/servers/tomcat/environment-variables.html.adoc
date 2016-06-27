@@ -1,0 +1,22 @@
+---
+title: Environment variables
+---
+:sectanchors:
+:linkattrs:
+:toc: macro
+:toclevels: 4
+:imagesdir: ../../../img
+
+== Environment variables on OpenShift
+
+OpenShift is using environment variables for pushing information into the
+applications. It's an effective way how to dynamically reconfigure applications
+without the need to change the source code at all and even without the need
+to rebuild the application container.
+
+Consuming information from environment allows you to build application once and
+then using the information tweak it's behaviour based on the environment where
+ti's currently deployed.
+
+Most common tasks for environment variables is to provide information where
+to connect to data stores, etc.
