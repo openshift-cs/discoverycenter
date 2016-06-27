@@ -50,6 +50,7 @@ developer:
     index.html.adoc:   "/developer/basic-concepts/index.html.adoc"
     terminology.html.adoc:   "/developer/basic-concepts/terminology.html.adoc"
     environment-variables.html.adoc: "/developer/basic-concepts/environment-variables.html.adoc"
+    quota.html.adoc: "/developer/managing-applications/quota.html.adoc"
   faq.html.adoc:   "/developer/faq.html.adoc"
 application-architect:
   index.html.erb: "/application-architect/index.html.erb"

@@ -1,0 +1,38 @@
+---
+title: Understanding your quota
+---
+:sectanchors:
+:linkattrs:
+:toc: macro
+:toclevels: 4
+:imagesdir: ../../img
+
+== Quota
+toc::[]
+
+link:https://docs.openshift.com/online/dev_guide/compute_resources.html#dev-quotas[Quota] provides a way to limit the amount of resources (projects, pods, services, persistent volumes,...) to be used per project.
+
+link:https://docs.openshift.com/online/dev_guide/compute_resources.html#dev-limit-ranges[Limit Ranges] provides a way to limit the amount of physical resources (cpu and memory) to be used per container or pod in a project.
+
+=== Project quota
+Now that we have an empty project, we can inspect what quota has been set for us. We can go into the "Project Settings", where we will see a summary of the quota we get, divided into four different categories:
+
+* *Quota compute-resources*: This provides with the amount of computing resources that our application will be able to use, showing the upper bound limits for CPU and memory as well as the amount of CPU and memory being currently in use.
+* *Quota compute-resources-timebound*:
+* *Quota object counts*:
+* *Limit Range*:
+
+Blabla
+
+image:developer/managing-applications/quota_screenshoot_1.png[Quota overview]
+image:developer/managing-applications/quota_screenshoot_2.png[Quota overview]
+
+
+
+=== How to set limits
+
+TODO: Show how we can set cpu and memory limits to our application
+
+=== Identifying when we exceed our quota
+
+TODO: Show errors when we exceed quota
