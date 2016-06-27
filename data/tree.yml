@@ -34,7 +34,9 @@ developer:
       environment-variables.html.adoc: "/developer/languages/python/environment-variables.html.adoc"
       advanced-deployment.html.adoc: "/developer/languages/python/advanced-deployment.html.adoc"
       community-resources.html.adoc: "/developer/languages/python/community-resources.html.adoc"
-    ruby.html.adoc: "/developer/languages/ruby.html.adoc"
+    ruby:
+      index.html.adoc: "/developer/languages/ruby/index.html.adoc"
+      getting-started.html.adoc: "/developer/languages/ruby/getting-started.html.adoc"
     static.html.adoc: "/developer/languages/static.html.adoc"
   databases:
     index.html.adoc: "/developer/databases/index.html.adoc"
@@ -45,9 +47,6 @@ developer:
     redis.html.adoc: "/developer/databases/redis.html.adoc"
     sqlite.html.adoc: "/developer/databases/sqlite.html.adoc"
   servers:
-    jbosseap:
-      overview.html.adoc: "/developer/servers/eap/overview.html.adoc"
-      getting-started.html.adoc: "/developer/servers/eap/getting-started.html.adoc"
     jbosswebserver:
       overview.html.adoc: "/developer/servers/tomcat/overview.html.adoc"
       getting-started.html.adoc: "/developer/servers/tomcat/getting-started.html.adoc"
@@ -56,11 +55,13 @@ developer:
       getting-started.html.adoc: "/developer/servers/wildfly/getting-started.html.adoc"
   managing-applications:
     index.html.adoc: "/developer/managing-applications/index.html.adoc"
+    quota.html.adoc: "/developer/managing-applications/quota.html.adoc"
+    from-dockerhub.html.adoc: "/developer/managing-applications/from-dockerhub.html.adoc"
+    private-repositories.html.adoc: "/developer/managing-applications/private-repositories.html.adoc"
   basic-concepts:
     index.html.adoc:   "/developer/basic-concepts/index.html.adoc"
     terminology.html.adoc:   "/developer/basic-concepts/terminology.html.adoc"
     environment-variables.html.adoc: "/developer/basic-concepts/environment-variables.html.adoc"
-    quota.html.adoc: "/developer/managing-applications/quota.html.adoc"
   faq.html.adoc:   "/developer/faq.html.adoc"
 application-architect:
   index.html.erb: "/application-architect/index.html.erb"
