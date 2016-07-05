@@ -1,0 +1,84 @@
+---
+title: From DockerHub
+---
+
+:imagesdir: ../../../img
+:toc: macro
+:toclevels: 4
+
+== Deploying containers from DockerHub
+
+OpenShift allows you to deploy not only application source code using the
+builder images, but you can deploy pretty much any container from DockerHub or
+any other Docker repository.
+
+=== OpenShift restrictions on containers
+OpenShift Online being a public service puts high requirements on the security
+of user data. And for this particular reason, not every single container is not
+allowed to run on the platform. The general problem we see everyday is that
+containers are trying to run as `root`. Is that a good idea? Not really, would
+you let the application running directly on the OS run as root? No! You would
+not and the same is with container. Applications should run as a regular use.
+
+OpenShift does enforce this and because not all images are build in the sane way
+you may run into problem with some containers. What going to happen in that case?
+As you try to create the application you will see this notice
+
+[source]
+----
+* WARNING: Image "<something>" runs as the 'root' user which may not be permitted by your cluster administrator
+----
+
+In such a case you would need to build (if you are the owner) or rebuild (if you
+just want to use someone's image) the image to not expect to be run as root.
+
+=== Deploying the containers
+
+To deploy custom containers, you need to use the terminal as it's not yet exposed
+int he web UI. You will use the `oc` client tool with the `new-app` command as
+you usually use for deploying stuff on OpenShift.
+
+[source]
+----
+oc new-app jenkins
+----
+
+Running this command deploys the official Jenkins container from DockerHub. You
+should see output something like this
+
+[source]
+----
+--> Found image 53a7c1e (5 weeks old) in image stream "jenkins" in project "openshift" under tag "1" for "jenkins"
+
+    * This image will be deployed in deployment config "jenkins"
+    * Ports 50000/tcp, 8080/tcp will be load balanced by service "jenkins"
+      * Other containers can access this service through the hostname "jenkins"
+    * This image declares volumes and will default to use non-persistent, host-local storage.
+      You can add persistent volumes later by running 'volume dc/jenkins --add ...'
+
+--> Creating resources with label app=jenkins ...
+    deploymentconfig "jenkins" created
+    service "jenkins" created
+--> Success
+    Run 'oc status' to view your app.
+----
+
+Once deployed you need to expose the service provided by the container, in this
+case it would be
+
+[source]
+----
+oc expose svc jenkins
+----
+
+and check what you URL looks like
+
+[source]
+----
+oc status
+----
+
+open the URL in your browser and you will be able to log in using the `admin`
+and `password` credentials.
+
+Voilà, you just deployed Jenkins using a prebuild container from DockerHub.

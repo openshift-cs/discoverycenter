@@ -1,0 +1,32 @@
+---
+title: Overview
+---
+:sectanchors:
+:linkattrs:
+:toc: macro
+:toclevels: 4
+:imagesdir: ../../../img
+
+== JBoss Web Server (Tomcat 8) application hosting
+
+OpenShift Online currently supports JBoss Web Server(Tomcat `8`) `3.0`.
+
+[NOTE]
+====
+JBoss WebServer 3.0 is based on Tomcat 8 which is an open source implementation of
+the Java Servlet, JavaServer Pages, Java Expression Language and Java WebSocket technologies.
+====
+
+Learn more at the link:http://www.jboss.org/products/webserver/overview/[JBoss Web Server home page].
+
+image::logos/jbosswebserver-logo.png[]
+
+
+
+=== The JBoss Web Server builder
+
+The JBoss Web Server builder provides support for deploying Servlets and JSP applications
+on OpenShift, using Apache Maven as build tool.
+OpenShift provides a template to deploy JBoss Web Server application alongside with a MongoDB database providing persistent storage for it’s data.
+
+link:getting-started.html[→ Get Started With JBoss Web Server on OpenShift]

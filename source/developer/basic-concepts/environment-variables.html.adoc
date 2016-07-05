@@ -1,0 +1,19 @@
+---
+title: Environment variables
+---
+
+== Environment variables on OpenShift
+
+OpenShift is using environment variables for injecting information into
+applications. It's an effective way how to dynamically reconfigure applications
+without the need to change the source code at all and even without the need
+to rebuild the application container.
+
+Most common tasks for environment variables is to provide information where
+to connect to data stores, etc.
+
+=== Using environment variables
+
+=== Composing environment variables from service names
+
+=== Some other generic things about env vars

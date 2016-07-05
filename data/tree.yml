@@ -22,9 +22,21 @@ developer:
     java.html.adoc: "/developer/languages/java.html.adoc"
     nodejs.html.adoc: "/developer/languages/nodejs.html.adoc"
     perl.html.adoc: "/developer/languages/perl.html.adoc"
-    php.html.adoc: "/developer/languages/php.html.adoc"
-    python.html.adoc: "/developer/languages/python.html.adoc"
-    ruby.html.adoc: "/developer/languages/ruby.html.adoc"
+    php:
+      index.html.adoc: "/developer/languages/php/index.html.adoc"
+      getting-started.html.adoc: "/developer/languages/php/getting-started.html.adoc"
+      dependencies.html.adoc: "/developer/languages/php/dependencies.html.adoc"
+      environment-variables.html.adoc: "/developer/languages/php/environment-variables.html.adoc"
+    python:
+      index.html.adoc: "/developer/languages/python/index.html.adoc"
+      getting-started.html.adoc: "/developer/languages/python/getting-started.html.adoc"
+      dependency-management.html.adoc: "/developer/languages/python/package-installation.html.adoc"
+      environment-variables.html.adoc: "/developer/languages/python/environment-variables.html.adoc"
+      advanced-deployment.html.adoc: "/developer/languages/python/advanced-deployment.html.adoc"
+      community-resources.html.adoc: "/developer/languages/python/community-resources.html.adoc"
+    ruby:
+      index.html.adoc: "/developer/languages/ruby/index.html.adoc"
+      getting-started.html.adoc: "/developer/languages/ruby/getting-started.html.adoc"
     static.html.adoc: "/developer/languages/static.html.adoc"
   databases:
     index.html.adoc: "/developer/databases/index.html.adoc"
@@ -34,8 +46,22 @@ developer:
     postgresql.html.adoc: "/developer/databases/postgresql.html.adoc"
     redis.html.adoc: "/developer/databases/redis.html.adoc"
     sqlite.html.adoc: "/developer/databases/sqlite.html.adoc"
+  servers:
+    jbosswebserver:
+      overview.html.adoc: "/developer/servers/tomcat/overview.html.adoc"
+      getting-started.html.adoc: "/developer/servers/tomcat/getting-started.html.adoc"
+    wildfly:
+      overview.html.adoc: "/developer/servers/wildfly/overview.html.adoc"
+      getting-started.html.adoc: "/developer/servers/wildfly/getting-started.html.adoc"
   managing-applications:
     index.html.adoc: "/developer/managing-applications/index.html.adoc"
+    quota.html.adoc: "/developer/managing-applications/quota.html.adoc"
+    from-dockerhub.html.adoc: "/developer/managing-applications/from-dockerhub.html.adoc"
+    private-repositories.html.adoc: "/developer/managing-applications/private-repositories.html.adoc"
+  basic-concepts:
+    index.html.adoc:   "/developer/basic-concepts/index.html.adoc"
+    terminology.html.adoc:   "/developer/basic-concepts/terminology.html.adoc"
+    environment-variables.html.adoc: "/developer/basic-concepts/environment-variables.html.adoc"
   faq.html.adoc:   "/developer/faq.html.adoc"
 application-architect:
   index.html.erb: "/application-architect/index.html.erb"
