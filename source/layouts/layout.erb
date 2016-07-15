@@ -76,6 +76,17 @@ function googleTranslateElementInit() {
           </div>
           <div class="col-md-9">
             <div class="main-content">
+              <div style="float:right" class="text-right">
+              <% if current_page.data.applies_to %>
+                  <% current_page.data.applies_to.each_pair do |product,versions| %>
+                    OpenShift <%= product.titlecase %>
+                    <% if !versions.blank? %>
+                      <%= versions.join(", ") %>
+                    <% end %>
+                        <br />
+                  <% end %>
+              <% end %>
+                </div>
               <%= yield %>
             </div>
           </div>
