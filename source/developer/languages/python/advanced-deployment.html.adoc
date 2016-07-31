@@ -92,7 +92,7 @@ mod_wsgi.server.start(
   '--trust-proxy-header', 'X-Forwarded-Proto',
   '--url-alias', '/static/', './static/',
   '--application-type', 'module',
-  '--entry-point', 'demo.wsgi',
+  '--entry-point', 'demo.wsgi'
 )
 --
 
